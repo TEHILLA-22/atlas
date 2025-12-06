@@ -1,4 +1,3 @@
-// src/components/product/ProductLayout.tsx
 "use client";
 
 import { ReactNode } from 'react';

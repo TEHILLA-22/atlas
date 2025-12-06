@@ -172,7 +172,7 @@ atlas.auth.onAuthStateChange((event, session) => {
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link
-                  href="/signup"
+                  href="/auth/signup"
                   className="group bg-gradient-to-r from-green-600 to-emerald-500 text-white px-8 py-3 rounded-xl
                            hover:from-green-700 hover:to-emerald-600 transition-all duration-300
                            shadow-xl shadow-green-500/30 hover:shadow-green-500/50
@@ -373,7 +373,7 @@ atlas.auth.onAuthStateChange((event, session) => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/signup"
+                href="/auth/signup"
                 className="bg-gradient-to-r from-green-600 to-emerald-500 text-white px-8 py-4 rounded-xl
                          hover:from-green-700 hover:to-emerald-600 transition-all duration-300
                          shadow-xl shadow-green-500/30 hover:shadow-green-500/50

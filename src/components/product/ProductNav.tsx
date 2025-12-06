@@ -69,11 +69,11 @@ export default function ProductNav() {
 
   return (
     <>
-      {/* Desktop Navigation */}
+
       <div className="hidden lg:block border-b border-gray-800 bg-black/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Product Title */}
+
             <div className="flex items-center space-x-4">
               <Link 
                 href="/product" 
@@ -96,7 +96,7 @@ export default function ProductNav() {
               </div>
             </div>
 
-            {/* Product Navigation */}
+          
             <div className="flex items-center space-x-1">
               {productItems.map((item) => {
                 const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
@@ -159,7 +159,7 @@ export default function ProductNav() {
             </Link>
           </div>
 
-          {/* Mobile Menu Dropdown */}
+        
           {isMobileMenuOpen && (
             <div className="pb-4">
               <div className="grid grid-cols-2 gap-2">

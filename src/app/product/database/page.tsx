@@ -122,7 +122,7 @@ atlas branch merge feature/new-auth`
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link
-                  href="/signup"
+                  href="/auth/signup"
                   className="group bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-3 rounded-xl
                            hover:from-blue-700 hover:to-cyan-600 transition-all duration-300
                            shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50
@@ -278,7 +278,7 @@ atlas branch merge feature/new-auth`
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/signup"
+                href="/auth/signup"
                 className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-4 rounded-xl
                          hover:from-blue-700 hover:to-cyan-600 transition-all duration-300
                          shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50

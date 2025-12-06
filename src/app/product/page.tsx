@@ -1,4 +1,3 @@
-// src/app/product/page.tsx - Product Overview Page
 "use client";
 
 import { useState } from 'react';
@@ -185,7 +184,7 @@ export default function ProductPage() {
             
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
-                href="/signup"
+                href="/auth/signup"
                 className="group bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-3 rounded-xl
                          hover:from-blue-700 hover:to-cyan-600 transition-all duration-300
                          shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50

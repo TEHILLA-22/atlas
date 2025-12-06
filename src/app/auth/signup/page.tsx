@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+    <div className="contain min-h-screen bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
