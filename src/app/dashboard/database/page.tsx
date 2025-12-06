@@ -1,3 +1,4 @@
+"use client";
 import { useState } from 'react';
 import { 
   Database, 
@@ -386,4 +387,5 @@ export default function DatabasePage() {
       </div>
     </div>
   );
+
 }
