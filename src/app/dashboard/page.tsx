@@ -204,7 +204,7 @@ export default function DashboardPage() {
             
             <nav className="space-y-1">
               {[
-                { icon: <Database className="w-5 h-5" />, label: 'Database', href: '#database', count: 3, active: true },
+                { icon: <Database className="w-5 h-5" />, label: 'Database', href: '/database', count: 3, active: true },
                 { icon: <Shield className="w-5 h-5" />, label: 'Authentication', href: '#auth', count: 12 },
                 { icon: <HardDrive className="w-5 h-5" />, label: 'Storage', href: '#storage', count: 245 },
                 { icon: <Zap className="w-5 h-5" />, label: 'Edge Functions', href: '#functions', count: 8 },

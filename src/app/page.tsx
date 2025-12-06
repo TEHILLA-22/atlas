@@ -1,44 +1,164 @@
-// src/app/page.tsx
-import Link from "next/link";
-import { ArrowRight, Zap, Shield, Database, HardDrive, Radio, Cloud, Rocket, CheckCircle, Users, Globe, Server, Mail, Phone, MapPin, Clock } from "lucide-react";
+"use client";
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { 
+  ChevronDown, 
+  Menu, 
+  X, 
+  Database, 
+  Shield, 
+  HardDrive, 
+  Zap, 
+  Radio, 
+  Globe,
+  Server,
+  Users,
+  Lock,
+  Cpu,
+  Code,
+  Terminal,
+  BookOpen,
+  MessageSquare,
+  Star,
+  TrendingUp,
+  CheckCircle,
+  ArrowRight,
+  Rocket,
+  Sparkles,
+  Cloud,
+  ShieldCheck,
+  Zap as Lightning,
+  GitBranch,
+  Eye
+} from 'lucide-react';
 
 export default function HomePage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const productItems = [
+    {
+      title: 'Database',
+      description: 'Fully managed Postgres with realtime',
+      icon: <Database className="w-5 h-5 text-blue-400" />,
+      href: '/product/database'
+    },
+    {
+      title: 'Authentication',
+      description: 'User management out of the box',
+      icon: <Shield className="w-5 h-5 text-green-400" />,
+      href: '/product/authentication'
+    },
+    {
+      title: 'Storage',
+      description: 'Store and serve any type of digital content',
+      icon: <HardDrive className="w-5 h-5 text-purple-400" />,
+      href: '#storage'
+    },
+    {
+      title: 'Edge Functions',
+      description: 'Deploy serverless functions globally',
+      icon: <Zap className="w-5 h-5 text-yellow-400" />,
+      href: '#functions'
+    },
+    {
+      title: 'Realtime',
+      description: 'Listen to database changes in realtime',
+      icon: <Radio className="w-5 h-5 text-pink-400" />,
+      href: '#realtime'
+    },
+    {
+      title: 'Vector Database',
+      description: 'AI-ready with pgvector support',
+      icon: <Cpu className="w-5 h-5 text-cyan-400" />,
+      href: '#vector'
+    }
+  ];
+
+  const developmentItems = [
+    {
+      title: 'Documentation',
+      description: 'Complete API references and guides',
+      icon: <BookOpen className="w-5 h-5 text-blue-400" />,
+      href: '#docs'
+    },
+    {
+      title: 'Examples',
+      description: 'Production-ready starter kits',
+      icon: <Code className="w-5 h-5 text-green-400" />,
+      href: '#examples'
+    },
+    {
+      title: 'CLI',
+      description: 'Command line interface',
+      icon: <Terminal className="w-5 h-5 text-purple-400" />,
+      href: '#cli'
+    },
+    {
+      title: 'API Status',
+      description: 'Service status and incidents',
+      icon: <Server className="w-5 h-5 text-yellow-400" />,
+      href: '#status'
+    },
+    {
+      title: 'Community',
+      description: 'Join our developer community',
+      icon: <Users className="w-5 h-5 text-pink-400" />,
+      href: '#community'
+    },
+    {
+      title: 'Support',
+      description: 'Get help from our team',
+      icon: <MessageSquare className="w-5 h-5 text-cyan-400" />,
+      href: '#support'
+    }
+  ];
+
   const features = [
     {
       icon: <Database className="w-8 h-8" />,
       title: "PostgreSQL Database",
-      description: "Fully-managed Postgres with realtime subscriptions, row-level security, and automatic backups. Scale from hobby to enterprise with zero downtime.",
-      highlights: ["Instant setup", "Realtime subscriptions", "Point-in-time recovery"]
+      description: "Every project is a full Postgres database, the world's most trusted relational database.",
+      highlights: ["100% portable", "Realtime enabled", "Row-level security"]
     },
     {
-      icon: <Shield className="w-8 h-8" />,
-      title: "Authentication",
-      description: "Built-in user management with OAuth, magic links, and passwordless login. SOC2 compliant with enterprise-grade security.",
-      highlights: ["Social login", "Passwordless", "Multi-factor auth"]
+      icon: <ShieldCheck className="w-8 h-8" />,
+      title: "Built-in Auth",
+      description: "Add user sign-ups and logins, securing your data with Row Level Security.",
+      highlights: ["Social login", "Passwordless", "Enterprise SSO"]
     },
     {
       icon: <HardDrive className="w-8 h-8" />,
-      title: "Storage",
-      description: "Unlimited object storage with global CDN. Optimized images, videos, and files with automatic optimization and transformation.",
-      highlights: ["Global CDN", "Image optimization", "Access controls"]
+      title: "Object Storage",
+      description: "Store, organize, and serve large files. Any media, including videos and images.",
+      highlights: ["Global CDN", "Image transformations", "Access controls"]
     },
     {
-      icon: <Zap className="w-8 h-8" />,
+      icon: <Lightning className="w-8 h-8" />,
       title: "Edge Functions",
-      description: "Serverless functions deployed globally to 30+ regions. Execute code closer to your users with sub-50ms cold starts.",
-      highlights: ["Global deployment", "Sub-50ms cold start", "TypeScript support"]
+      description: "Write custom code without deploying or scaling servers. Globally distributed.",
+      highlights: ["TypeScript", "Sub-50ms cold starts", "30+ regions"]
     },
     {
       icon: <Radio className="w-8 h-8" />,
       title: "Realtime",
-      description: "WebSocket connections for realtime updates across clients. Broadcast messages to millions of connected devices simultaneously.",
-      highlights: ["WebSocket-based", "Presence channels", "Broadcast messaging"]
+      description: "Listen to your PostgreSQL database in realtime via websockets.",
+      highlights: ["WebSocket API", "Presence channels", "Broadcast messages"]
     },
     {
-      icon: <Server className="w-8 h-8" />,
-      title: "Vector Database",
-      description: "Native vector embeddings with pgvector. Build AI applications with semantic search and similarity matching.",
-      highlights: ["pgvector native", "Semantic search", "AI embeddings"]
+      icon: <GitBranch className="w-8 h-8" />,
+      title: "Database Branching",
+      description: "Branch your database like your code. Perfect for testing and CI/CD.",
+      highlights: ["Instant cloning", "Zero downtime", "Merge conflicts"]
     }
   ];
 
@@ -46,155 +166,290 @@ export default function HomePage() {
     { value: "99.99%", label: "Uptime SLA", description: "Enterprise-grade reliability" },
     { value: "<50ms", label: "Edge latency", description: "Global deployment" },
     { value: "30+", label: "Regions", description: "Worldwide coverage" },
-    { value: "∞", label: "Scalability", description: "No limits on growth" }
-  ];
-
-  const companies = [
-    { name: "Vercel", description: "Powering Next.js deployments" },
-    { name: "Shopify", description: "E-commerce backend" },
-    { name: "Discord", description: "Realtime messaging" },
-    { name: "Linear", description: "Project management" },
-    { name: "Cal.com", description: "Scheduling platform" },
-    { name: "Plausible", description: "Analytics infrastructure" }
+    { value: "50,000+", label: "Developers", description: "Trusted by teams" }
   ];
 
   return (
-    <div className="min-h-screen bg-black text-blue-300">
+    <div className="min-h-screen bg-[#0a0a0a] text-gray-100 overflow-x-hidden">
       {/* Cosmic Background Effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-500"></div>
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Animated gradient orbs */}
+        <div className="absolute top-0 -right-40 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse"></div>
+        <div className="absolute top-1/3 -left-40 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 animate-pulse delay-500"></div>
         
-        {/* Star field */}
-        <div className="absolute inset-0">
-          {[...Array(100)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-[1px] h-[1px] bg-white rounded-full animate-twinkle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                opacity: Math.random() * 0.7 + 0.3
-              }}
-            />
-          ))}
-        </div>
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
 
       {/* Navigation */}
-<nav className="relative border-b border-gray-800/50 backdrop-blur-lg bg-black/50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex justify-between items-center h-16">
-      <div className="flex items-center space-x-3">
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 via-cyan-400 to-blue-700 rounded-lg animate-gradient-xy" />
-        <span className="text-xl font-bold text-white bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-          Atlas
-        </span>
-      </div>
-      <div className="hidden md:flex items-center space-x-8">
-        <a href="#features" className="text-gray-300 hover:text-white transition-colors">
-          Features
-        </a>
-        <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">
-          Pricing
-        </a>
-        <a href="#enterprise" className="text-gray-300 hover:text-white transition-colors">
-          Enterprise
-        </a>
-        <a href="#contact" className="text-gray-300 hover:text-white transition-colors">
-          Contact
-        </a>
-        <a href="#docs" className="text-gray-300 hover:text-white transition-colors">
-          Documentation
-        </a>
-      </div>
-      <div className="flex items-center space-x-4">
-        <Link 
-          href="/auth/login" 
-          className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
-        >
-          Sign In
-        </Link>
-        <Link 
-          href="/auth/signup"
-          className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2.5 rounded-lg 
-                   hover:from-blue-700 hover:to-cyan-600 transition-all duration-300
-                   shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40
-                   flex items-center space-x-2"
-        >
-          <span>Start Building</span>
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-    </div>
-  </div>
-</nav>
-
-      {/* Hero Section */}
-      <main className="relative">
-        <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto text-center">
-            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-blue-900/20 border border-blue-700/30 mb-8">
-              <Rocket className="w-4 h-4 text-blue-400" />
-              <span className="text-sm text-blue-300">Trusted by 50,000+ developers</span>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? 'bg-black/80 backdrop-blur-xl border-b border-gray-800' : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 via-cyan-400 to-blue-700 rounded-lg"></div>
+                <span className="text-xl font-bold text-white">Atlas</span>
+              </Link>
             </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              The Cloud Platform for
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 animate-gradient">
-                Production Applications
-              </span>
-            </h1>
-            
-            <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Everything you need to build, deploy, and scale production applications. 
-              Get Postgres database, authentication, storage, and edge functions in a single platform.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {/* Product Dropdown */}
+              <div className="relative group">
+                <button className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors py-2">
+                  <a href="/product">Product</a>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                <div className="absolute left-0 mt-2 w-96 bg-black/95 backdrop-blur-xl border border-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="p-6">
+                    <div className="grid grid-cols-2 gap-4">
+                      {productItems.map((item, index) => (
+                        <a
+                          key={index}
+                          href={item.href}
+                          className="group/item p-3 rounded-lg hover:bg-gray-900/50 transition-colors"
+                        >
+                          <div className="flex items-start space-x-3">
+                            {item.icon}
+                            <div>
+                              <div className="text-white font-medium group-hover/item:text-blue-400 transition-colors">
+                                {item.title}
+                              </div>
+                              <div className="text-sm text-gray-400 mt-1">
+                                {item.description}
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Development Dropdown */}
+              <div className="relative group">
+                <button className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors py-2">
+                  <span>Development</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                <div className="absolute left-0 mt-2 w-80 bg-black/95 backdrop-blur-xl border border-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="p-6">
+                    <div className="space-y-2">
+                      {developmentItems.map((item, index) => (
+                        <a
+                          key={index}
+                          href={item.href}
+                          className="group/item p-3 rounded-lg hover:bg-gray-900/50 transition-colors flex items-start space-x-3"
+                        >
+                          {item.icon}
+                          <div>
+                            <div className="text-white font-medium group-hover/item:text-blue-400 transition-colors">
+                              {item.title}
+                            </div>
+                            <div className="text-sm text-gray-400">
+                              {item.description}
+                            </div>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Simple Links */}
+              <a href="#features" className="text-gray-300 hover:text-white transition-colors">
+                Features
+              </a>
+              <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">
+                Pricing
+              </a>
+              <a href="#enterprise" className="text-gray-300 hover:text-white transition-colors">
+                Enterprise
+              </a>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/auth/login" 
+                className="text-gray-300 hover:text-white transition-colors hidden md:block"
+              >
+                Sign In
+              </Link>
               <Link 
                 href="/auth/signup"
-                className="group bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-4 rounded-xl
+                className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-5 py-2 rounded-lg 
                          hover:from-blue-700 hover:to-cyan-600 transition-all duration-300
-                         shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50
-                         text-lg font-semibold flex items-center justify-center space-x-2"
+                         shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40
+                         flex items-center space-x-2"
               >
-                <span>Start Free Forever</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <Rocket className="w-4 h-4" />
+                <span>Start Free</span>
               </Link>
-              <Link 
-                href="/auth/login"
-                className="border border-gray-700 text-gray-300 px-8 py-4 rounded-xl text-lg font-semibold
-                         hover:bg-gray-900/50 hover:border-gray-600 transition-colors
-                         hover:text-white"
-              >
-                View Live Demo
-              </Link>
-            </div>
 
-            {/* Metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-20">
-              {metrics.map((metric, index) => (
-                <div key={index} className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
-                  <div className="text-3xl font-bold text-white mb-2">{metric.value}</div>
-                  <div className="text-blue-300 font-semibold">{metric.label}</div>
-                  <div className="text-sm text-gray-400 mt-1">{metric.description}</div>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="lg:hidden text-gray-300 hover:text-white p-2"
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden bg-black/95 backdrop-blur-xl border-b border-gray-800">
+            <div className="px-4 pt-2 pb-3 space-y-1">
+              {/* Mobile Product */}
+              <div className="px-3 py-2">
+                <div className="text-gray-400 text-sm font-medium mb-2">Product</div>
+                <div className="space-y-1">
+                  {productItems.map((item, index) => (
+                    <a
+                      key={index}
+                      href={item.href}
+                      className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-900/50"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.icon}
+                      <div>
+                        <div className="text-white">{item.title}</div>
+                        <div className="text-sm text-gray-400">{item.description}</div>
+                      </div>
+                    </a>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Mobile Development */}
+              <div className="px-3 py-2">
+                <div className="text-gray-400 text-sm font-medium mb-2">Development</div>
+                <div className="space-y-1">
+                  {developmentItems.map((item, index) => (
+                    <a
+                      key={index}
+                      href={item.href}
+                      className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-900/50"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.icon}
+                      <div>
+                        <div className="text-white">{item.title}</div>
+                        <div className="text-sm text-gray-400">{item.description}</div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Simple Mobile Links */}
+              <a href="#features" className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-900/50 rounded-lg">
+                Features
+              </a>
+              <a href="#pricing" className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-900/50 rounded-lg">
+                Pricing
+              </a>
+              <a href="#enterprise" className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-900/50 rounded-lg">
+                Enterprise
+              </a>
+              
+              <div className="pt-4 border-t border-gray-800">
+                <Link 
+                  href="/auth/login" 
+                  className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-900/50 rounded-lg"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Sign In
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <main className="relative z-10">
+        <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center">
+              {/* Animated badge */}
+              <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-blue-900/20 border border-blue-700/30 mb-8 animate-pulse">
+                <Sparkles className="w-4 h-4 text-blue-400" />
+                <span className="text-sm text-blue-300">Trusted by 50,000+ developers</span>
+              </div>
+              
+              {/* Main headline */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                The platform for
+                <span className="block mt-4">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">
+                    production-ready apps
+                  </span>
+                </span>
+              </h1>
+              
+              {/* Subheadline */}
+              <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Build faster with a complete backend. Get Postgres database, authentication, storage, and edge functions in one platform.
+              </p>
+              
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                <Link 
+                  href="/signup"
+                  className="group bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-4 rounded-xl
+                           hover:from-blue-700 hover:to-cyan-600 transition-all duration-300
+                           shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50
+                           text-lg font-semibold flex items-center justify-center space-x-2"
+                >
+                  <span>Start your project</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link 
+                  href="#demo"
+                  className="border border-gray-700 text-gray-300 px-8 py-4 rounded-xl text-lg font-semibold
+                           hover:bg-gray-900/50 hover:border-gray-600 transition-colors
+                           hover:text-white"
+                >
+                  <span className="flex items-center justify-center space-x-2">
+                    <Eye className="w-5 h-5" />
+                    <span>View demo</span>
+                  </span>
+                </Link>
+              </div>
+
+              {/* Metrics */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                {metrics.map((metric, index) => (
+                  <div key={index} className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
+                    <div className="text-3xl font-bold text-white mb-2">{metric.value}</div>
+                    <div className="text-blue-300 font-semibold">{metric.label}</div>
+                    <div className="text-sm text-gray-400 mt-1">{metric.description}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/20">
+        <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-white mb-4">
-                Everything you need to build
+                Everything you need to
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                  World-class applications
+                  build and scale
                 </span>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -229,561 +484,117 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Trusted By Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        {/* Code Example Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-gray-900/20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center space-x-2 text-gray-400 mb-2">
-                <Users className="w-5 h-5" />
-                <span>TRUSTED BY INDUSTRY LEADERS</span>
-              </div>
-              <h3 className="text-3xl font-bold text-white">
-                Powering the next generation of applications
-              </h3>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-              {companies.map((company, index) => (
-                <div 
-                  key={index}
-                  className="bg-gray-900/20 border border-gray-800 rounded-xl p-6 text-center
-                           hover:border-blue-500/30 transition-colors group"
-                >
-                  <div className="text-xl font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">
-                    {company.name}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-4xl font-bold text-white mb-6">
+                  Build in minutes,
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                    not weeks
+                  </span>
+                </h2>
+                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                  With our SDKs and straightforward APIs, you can go from zero to production in record time.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-green-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium">TypeScript SDK</h4>
+                      <p className="text-gray-400 text-sm">Fully typed for the best developer experience</p>
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-400">
-                    {company.description}
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-green-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium">CLI & Local Development</h4>
+                      <p className="text-gray-400 text-sm">Develop locally and deploy with one command</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-green-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium">Auto-generated APIs</h4>
+                      <p className="text-gray-400 text-sm">Instant REST and GraphQL APIs from your database</p>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
+              
+              {/* Code Block */}
+              <div className="bg-black/50 border border-gray-800 rounded-xl overflow-hidden">
+                <div className="flex items-center justify-between px-4 py-3 bg-gray-900/50 border-b border-gray-800">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <div className="text-sm text-gray-400">server.ts</div>
+                </div>
+                <div className="p-6">
+                  <pre className="text-sm text-gray-300 overflow-x-auto">
+                    {`// Initialize Atlas client
+import { createClient } from '@atlas/supabase-js'
+
+const atlas = createClient(
+  process.env.ATLAS_URL,
+  process.env.ATLAS_ANON_KEY
+)
+
+// Real-time subscription
+const channel = atlas
+  .channel('todos')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public' },
+    (payload) => {
+      console.log('Change received!', payload)
+    }
+  )
+  .subscribe()
+
+// Edge Function example
+export default async function handler(req) {
+  const { data: user } = await atlas.auth.getUser()
+  
+  if (!user) {
+    return new Response('Unauthorized', { status: 401 })
+  }
+  
+  const { data } = await atlas
+    .from('todos')
+    .select('*')
+    .eq('user_id', user.id)
+  
+  return new Response(JSON.stringify(data))
+}`}
+                  </pre>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-
-
-{/* Pricing Section */}
-<section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/30">
-  <div className="max-w-7xl mx-auto">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl font-bold text-white mb-4">
-        Simple, transparent pricing
-        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-          Scale with your needs
-        </span>
-      </h2>
-      <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-        Start free, scale as you grow. No hidden fees, no surprises.
-      </p>
-    </div>
-
-    {/* Pricing Toggle */}
-    <div className="flex justify-center mb-12">
-      <div className="inline-flex rounded-xl bg-gray-900/50 p-1 border border-gray-800">
-        <button className="px-6 py-3 rounded-lg text-white bg-gradient-to-r from-blue-600 to-cyan-500 text-sm font-semibold">
-          Monthly billing
-        </button>
-        <button className="px-6 py-3 rounded-lg text-gray-400 hover:text-white text-sm font-semibold">
-          Annual billing (Save 20%)
-        </button>
-      </div>
-    </div>
-
-    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {/* Free Plan */}
-      <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all">
-        <div className="mb-8">
-          <h3 className="text-2xl font-bold text-white mb-2">Free</h3>
-          <div className="flex items-baseline">
-            <span className="text-4xl font-bold text-white">$0</span>
-            <span className="text-gray-400 ml-2">/month</span>
-          </div>
-          <p className="text-gray-400 mt-2">Perfect for side projects and prototypes</p>
-        </div>
-
-        <ul className="space-y-4 mb-8">
-          {[
-            "10,000 monthly active users",
-            "500MB database",
-            "1GB file storage",
-            "50,000 edge function invocations",
-            "5 concurrent realtime connections",
-            "Community support",
-            "Basic analytics",
-            "Email/password auth"
-          ].map((feature, i) => (
-            <li key={i} className="flex items-center text-gray-300">
-              <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-
-        <Link
-          href="/auth/signup"
-          className="block w-full text-center border border-gray-700 text-white px-6 py-3 rounded-lg
-                   hover:bg-gray-800/50 hover:border-gray-600 transition-colors font-semibold"
-        >
-          Get Started Free
-        </Link>
-      </div>
-
-      {/* Pro Plan - Most Popular */}
-      <div className="bg-gradient-to-b from-gray-900/50 to-blue-900/20 border-2 border-blue-500/30 rounded-2xl p-8 relative transform hover:-translate-y-1 transition-transform">
-        <div className="absolute top-0 right-6 -translate-y-1/2">
-          <span className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-            MOST POPULAR
-          </span>
-        </div>
-
-        <div className="mb-8">
-          <h3 className="text-2xl font-bold text-white mb-2">Pro</h3>
-          <div className="flex items-baseline">
-            <span className="text-4xl font-bold text-white">$25</span>
-            <span className="text-gray-400 ml-2">/month</span>
-          </div>
-          <p className="text-gray-300 mt-2">For production applications and startups</p>
-        </div>
-
-        <ul className="space-y-4 mb-8">
-          {[
-            "100,000 monthly active users",
-            "8GB database",
-            "100GB file storage",
-            "1M edge function invocations",
-            "100 concurrent realtime connections",
-            "Priority support",
-            "Advanced analytics",
-            "Social auth + SAML",
-            "Custom domains",
-            "Team collaboration",
-            "Scheduled backups",
-            "Performance monitoring"
-          ].map((feature, i) => (
-            <li key={i} className="flex items-center text-white">
-              <CheckCircle className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-
-        <Link
-          href="/auth/signup?plan=pro"
-          className="block w-full text-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white 
-                   px-6 py-3 rounded-lg hover:from-blue-700 hover:to-cyan-600 transition-all font-semibold"
-        >
-          Start Pro Trial
-        </Link>
-      </div>
-
-      {/* Enterprise Plan */}
-      <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-cyan-500/50 transition-all">
-        <div className="mb-8">
-          <h3 className="text-2xl font-bold text-white mb-2">Enterprise</h3>
-          <div className="flex items-baseline">
-            <span className="text-4xl font-bold text-white">Custom</span>
-          </div>
-          <p className="text-gray-400 mt-2">For mission-critical applications</p>
-        </div>
-
-        <ul className="space-y-4 mb-8">
-          {[
-            "Unlimited monthly active users",
-            "Custom database storage",
-            "Unlimited file storage",
-            "Unlimited edge functions",
-            "Unlimited realtime connections",
-            "24/7 dedicated support",
-            "Enterprise SLA (99.99%)",
-            "SSO & SAML integration",
-            "Custom compliance (SOC2, HIPAA)",
-            "Dedicated infrastructure",
-            "Custom regions deployment",
-            "Security audit & pentesting",
-            "Dedicated account manager",
-            "Training & onboarding"
-          ].map((feature, i) => (
-            <li key={i} className="flex items-center text-gray-300">
-              <CheckCircle className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-
-        <Link
-          href="#enterprise"
-          className="block w-full text-center border border-cyan-500/50 text-cyan-400 px-6 py-3 rounded-lg
-                   hover:bg-cyan-900/20 hover:border-cyan-400 transition-colors font-semibold"
-        >
-          Contact Sales
-        </Link>
-      </div>
-    </div>
-
-    {/* FAQ Section */}
-    <div className="mt-20 max-w-3xl mx-auto">
-      <h3 className="text-2xl font-bold text-white text-center mb-8">Frequently asked questions</h3>
-      <div className="space-y-4">
-        {[
-          {
-            question: "Can I switch plans at any time?",
-            answer: "Yes, you can upgrade, downgrade, or cancel your plan at any time. Changes take effect immediately."
-          },
-          {
-            question: "Do you offer discounts for startups?",
-            answer: "Yes! We offer special discounts for Y Combinator, Techstars, and other accelerator programs. Contact sales for details."
-          },
-          {
-            question: "Is there a free trial for paid plans?",
-            answer: "Yes! All paid plans come with a 14-day free trial. No credit card required to start."
-          },
-          {
-            question: "How is pricing calculated?",
-            answer: "We charge based on usage. Your monthly bill includes database storage, file storage, bandwidth, and active users. See our pricing calculator for details."
-          },
-          {
-            question: "Do you offer custom plans for education or nonprofits?",
-            answer: "Absolutely! We offer special pricing for educational institutions and registered nonprofits. Contact our team for more information."
-          }
-        ].map((faq, i) => (
-          <div key={i} className="bg-gray-900/30 border border-gray-800 rounded-xl p-6">
-            <h4 className="text-lg font-semibold text-white mb-2">{faq.question}</h4>
-            <p className="text-gray-400">{faq.answer}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* Enterprise Section */}
-<section id="enterprise" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/50">
-  <div className="max-w-7xl mx-auto">
-    <div className="grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-          <Shield className="w-4 h-4 text-blue-400" />
-          <span className="text-sm text-blue-300">Enterprise Grade</span>
-        </div>
-        
-        <h2 className="text-4xl font-bold text-white mb-6">
-          Built for the world's most demanding applications
-        </h2>
-        
-        <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-          Trusted by Fortune 500 companies and startups alike. Our enterprise platform provides the security, compliance, and scalability required for mission-critical applications.
-        </p>
-        
-        <div className="space-y-6">
-          {[
-            {
-              icon: <Shield className="w-6 h-6" />,
-              title: "Enterprise Security",
-              description: "SOC2 Type II, HIPAA, GDPR compliant. Regular security audits and pentesting."
-            },
-            {
-              icon: <Globe className="w-6 h-6" />,
-              title: "Global Infrastructure",
-              description: "Deploy in 30+ regions worldwide with dedicated infrastructure options."
-            },
-            {
-              icon: <Server className="w-6 h-6" />,
-              title: "24/7 Support",
-              description: "Dedicated engineering support with 15-minute response time SLA."
-            },
-            {
-              icon: <Users className="w-6 h-6" />,
-              title: "Custom Solutions",
-              description: "Tailored architecture and migration support for complex deployments."
-            }
-          ].map((feature, i) => (
-            <div key={i} className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center text-blue-400 flex-shrink-0">
-                {feature.icon}
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-white mb-1">{feature.title}</h4>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Contact Form */}
-      <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
-        <h3 className="text-2xl font-bold text-white mb-2">Talk to our enterprise team</h3>
-        <p className="text-gray-400 mb-6">Get a custom quote and dedicated support for your organization.</p>
-        
-        <form className="space-y-4">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">First name</label>
-              <input
-                type="text"
-                required
-                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                         text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                         focus:ring-blue-500 focus:border-transparent"
-                placeholder="cofoundr"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">Last name</label>
-              <input
-                type="text"
-                required
-                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                         text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                         focus:ring-blue-500 focus:border-transparent"
-                placeholder="Chronicles"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Work email</label>
-            <input
-              type="email"
-              required
-              className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                       text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                       focus:ring-blue-500 focus:border-transparent"
-              placeholder="cofoundre@gmail.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Company name</label>
-            <input
-              type="text"
-              required
-              className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                       text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                       focus:ring-blue-500 focus:border-transparent"
-              placeholder="Cofoundre Inc."
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Company size</label>
-            <select
-              className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                       text-white focus:outline-none focus:ring-2 
-                       focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="">Select company size</option>
-              <option value="1-10">1-10 employees</option>
-              <option value="11-50">11-50 employees</option>
-              <option value="51-200">51-200 employees</option>
-              <option value="201-500">201-500 employees</option>
-              <option value="501-1000">501-1000 employees</option>
-              <option value="1000+">1000+ employees</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">What are you looking to build?</label>
-            <textarea
-              rows={4}
-              className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                       text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                       focus:ring-blue-500 focus:border-transparent"
-              placeholder="Tell us about your project, current infrastructure, and specific requirements..."
-            />
-          </div>
-
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="privacy"
-              className="h-4 w-4 rounded border-gray-700 bg-gray-900 text-blue-600 focus:ring-blue-500"
-              required
-            />
-            <label htmlFor="privacy" className="ml-2 text-sm text-gray-400">
-              I agree to the{" "}
-              <a href="#privacy" className="text-blue-400 hover:text-blue-300">
-                Privacy Policy
-              </a>{" "}
-              and consent to being contacted.
-            </label>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white 
-                     py-3 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-600 
-                     transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
-          >
-            Request Enterprise
-          </button>
-
-          <p className="text-center text-sm text-gray-500">
-            Typically respond within 2 hours during business days
-          </p>
-        </form>
-      </div>
-    </div>
-
-    {/* Enterprise Logos */}
-    <div className="mt-20">
-      <h4 className="text-center text-gray-400 text-sm font-semibold tracking-wider mb-8">
-        TRUSTED BY ENTERPRISE TEAMS
-      </h4>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-        {[
-          { name: "Microsoft", desc: "Azure integration" },
-          { name: "IBM", desc: "Cloud services" },
-          { name: "Salesforce", desc: "CRM platform" },
-          { name: "Airbnb", desc: "Booking system" },
-          { name: "Uber", desc: "Real-time tracking" },
-          { name: "Netflix", desc: "Streaming services" }
-        ].map((company, i) => (
-          <div key={i} className="text-center">
-            <div className="text-xl font-bold text-white mb-1">{company.name}</div>
-            <div className="text-xs text-gray-500">{company.desc}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* Contact Section */}
-<section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/20">
-  <div className="max-w-7xl mx-auto">
-    <div className="grid lg:grid-cols-2 gap-12">
-      <div>
-        <h2 className="text-4xl font-bold text-white mb-6">Get in touch</h2>
-        <p className="text-xl text-gray-300 mb-8">
-          Have questions? Our team is here to help you build amazing applications.
-        </p>
-        
-        <div className="space-y-6">
-          <div className="flex items-start space-x-4">
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center text-blue-400">
-              <Mail className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-1">General inquiries</h4>
-              <a href="mailto:hello@atlas.dev" className="text-blue-400 hover:text-blue-300">
-                hello@atlas.dev
-              </a>
-              <p className="text-gray-400 text-sm mt-1">Typically respond within 24 hours</p>
-            </div>
-          </div>
-
-          <div className="flex items-start space-x-4">
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center text-blue-400">
-              <Phone className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-1">Sales & support</h4>
-              <a href="tel:+18885551234" className="text-blue-400 hover:text-blue-300">
-                +1 (888) 555-1234
-              </a>
-              <p className="text-gray-400 text-sm mt-1">Mon-Fri, 9am-6pm EST</p>
-            </div>
-          </div>
-
-          <div className="flex items-start space-x-4">
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center text-blue-400">
-              <MapPin className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-1">Office locations</h4>
-              <p className="text-gray-300">San Francisco, CA</p>
-              <p className="text-gray-300">New York, NY</p>
-              <p className="text-gray-300">London, UK</p>
-              <p className="text-gray-400 text-sm mt-1">Remote team across 12 countries</p>
-            </div>
-          </div>
-
-          <div className="flex items-start space-x-4">
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center text-blue-400">
-              <Clock className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-1">Support hours</h4>
-              <p className="text-gray-300">Community: 24/7 forums</p>
-              <p className="text-gray-300">Pro: 12-hour response</p>
-              <p className="text-gray-300">Enterprise: 15-minute SLA</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Quick Contact Form */}
-      <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
-        <h3 className="text-2xl font-bold text-white mb-6">Send us a message</h3>
-        
-        <form className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-            <input
-              type="email"
-              required
-              className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                       text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                       focus:ring-blue-500 focus:border-transparent"
-              placeholder="you@company.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-            <select
-              className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                       text-white focus:outline-none focus:ring-2 
-                       focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="">Select a topic</option>
-              <option value="sales">Sales inquiry</option>
-              <option value="support">Technical support</option>
-              <option value="billing">Billing question</option>
-              <option value="partnership">Partnership opportunity</option>
-              <option value="press">Press/media inquiry</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
-            <textarea
-              rows={5}
-              required
-              className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
-                       text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                       focus:ring-blue-500 focus:border-transparent"
-              placeholder="How can we help you today?"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white 
-                     py-3 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-600 
-                     transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
-          >
-            Send Message
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
 
         {/* CTA Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-gradient-to-r from-blue-900/20 to-cyan-900/20 border border-blue-800/30 rounded-2xl p-8 md:p-12">
-              <Globe className="w-16 h-16 text-cyan-400 mx-auto mb-6" />
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mx-auto mb-6">
+                <Rocket className="w-8 h-8 text-white" />
+              </div>
               <h2 className="text-4xl font-bold text-white mb-4">
                 Ready to build the future?
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Join 50,000+ developers who trust Atlas with their production infrastructure.
+                Join thousands of developers who trust Atlas with their production infrastructure.
                 Get started in seconds with our generous free tier.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -829,10 +640,10 @@ export default function HomePage() {
             <div>
               <h4 className="text-white font-semibold mb-4">Product</h4>
               <ul className="space-y-2">
-                <li><a href="#features" className="text-gray-400 hover:text-white transition-colors">Features</a></li>
-                <li><a href="#pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#docs" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#status" className="text-gray-400 hover:text-white transition-colors">Status</a></li>
+                <li><a href="/product/database" className="text-gray-400 hover:text-white transition-colors">Database</a></li>
+                <li><a href="#auth" className="text-gray-400 hover:text-white transition-colors">Authentication</a></li>
+                <li><a href="#storage" className="text-gray-400 hover:text-white transition-colors">Storage</a></li>
+                <li><a href="#functions" className="text-gray-400 hover:text-white transition-colors">Edge Functions</a></li>
               </ul>
             </div>
             
@@ -847,12 +658,12 @@ export default function HomePage() {
             </div>
             
             <div>
-              <h4 className="text-white font-semibold mb-4">Legal</h4>
+              <h4 className="text-white font-semibold mb-4">Resources</h4>
               <ul className="space-y-2">
-                <li><a href="#privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#security" className="text-gray-400 hover:text-white transition-colors">Security</a></li>
-                <li><a href="#compliance" className="text-gray-400 hover:text-white transition-colors">Compliance</a></li>
+                <li><a href="#docs" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                <li><a href="#status" className="text-gray-400 hover:text-white transition-colors">Status</a></li>
+                <li><a href="#support" className="text-gray-400 hover:text-white transition-colors">Support</a></li>
+                <li><a href="#community" className="text-gray-400 hover:text-white transition-colors">Community</a></li>
               </ul>
             </div>
           </div>

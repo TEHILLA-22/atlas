@@ -121,7 +121,8 @@ export default function LoginForm() {
 
         <button
           type="button"
-          className="w-full flex items-center justify-center space-x-2
+          className="w-full fl
+          ex items-center justify-center space-x-2
                    px-4 py-3 border border-gray-700 rounded-lg text-gray-300
                    hover:bg-gray-900 transition-colors"
         >

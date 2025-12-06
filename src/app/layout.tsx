@@ -1,13 +1,14 @@
-// src/app/layout.tsx
+// src/app/layout.tsx - Update to include global nav
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import GlobalNav from "@/components/GlobalNav";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Atlas - Cofoundrs next gen",
-  description: "Open source backend platform with Postgres database, Auth, Storage, and Edge Functions",
+  title: "Atlas | The Complete Backend Platform",
+  description: "Build production-ready applications with PostgreSQL database, authentication, storage, and edge functions",
 };
 
 export default function RootLayout({
@@ -16,8 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-black text-blue-400`}>
+    <html lang="en" className="dark scroll-smooth">
+      <body className={`${inter.className} bg-[#0a0a0a] text-gray-100 antialiased`}>
+        <GlobalNav />
         {children}
       </body>
     </html>
