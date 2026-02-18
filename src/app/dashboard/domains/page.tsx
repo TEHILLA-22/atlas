@@ -62,7 +62,7 @@ export default function ProfessionalDomainSearch() {
     setIsCheckingOut(true);
     localStorage.setItem('atlas_cart', JSON.stringify({ items: cart, total: totalPrice }));
     await new Promise(r => setTimeout(r, 800));
-    router.push('/dashboard/domains/checkout');
+    router.push('/dashboard/domain/checkout');
   };
 
   return (
@@ -243,5 +243,4 @@ export default function ProfessionalDomainSearch() {
       </div>
     </div>
   );
-
 }
