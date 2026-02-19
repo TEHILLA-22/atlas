@@ -363,7 +363,7 @@ export default function PricingPage() {
                 </ul>
                 
                 <Link
-                  href={plan.id === 'team' ? '/contact' : '/signup'}
+                  href={plan.id === 'team' ? '/contact' : '/auth/signup'}
                   className={`block w-full text-center py-3 px-4 rounded-xl font-semibold transition-all ${
                     plan.ctaVariant === 'primary'
                       ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600'
@@ -689,4 +689,5 @@ export default function PricingPage() {
       </section>
     </div>
   );
+
 } 
